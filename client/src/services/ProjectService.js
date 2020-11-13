@@ -1,15 +1,10 @@
 export const get = (url) => {
-  return fetch(url, {
-    method: "GET", //
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }).then((response) => response.json());
+  return fetch(url).then((response) => response.json());
 };
 
 export const addProject = (url, project) => {
   return fetch(url, {
-    method: "POST", //
+    method: "POST", 
     headers: {
       "Content-Type": "application/json",
     },
@@ -29,19 +24,22 @@ export const updateProject = (url, project) => {
 
 export const deleteProject = (url) => {
   return fetch(url, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    method: "DELETE"
   }).then((response) => response.json());
 };
 
 export const addTime = (url, time) => {
   return fetch(url, {
-    method: "POST", //
+    method: "POST", 
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(time),
   }).then((response) => response.json());
 };
+
+export const deleteTimeById = (url) => {  
+  return fetch(url, {
+    method: "DELETE"
+  }).then(response => response.json());
+}

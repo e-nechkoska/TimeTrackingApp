@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { get, addTime } from "../services/ProjectService";
+import { get, addTime, deleteTimeById } from "../services/ProjectService";
 
 class ProjectDetails extends Component {
   constructor(props) {
@@ -16,9 +16,8 @@ class ProjectDetails extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
-  componentDidMount() {
-    const url =
-      "http://localhost:3000/projects/" + this.props.history.location.id;
+  fetchProject = () => {
+    const url = "http://localhost:3000/projects/" + this.props.history.location.id;
     get(url).then((res) => {
       this.setState({ project: res });
       let hours = 0;
@@ -29,6 +28,10 @@ class ProjectDetails extends Component {
         this.setState({ totalHours: hours });
       }
     });
+  }
+
+  componentDidMount() {
+    this.fetchProject();
   }
 
   showHideAddHoursForm() {
@@ -56,7 +59,13 @@ class ProjectDetails extends Component {
     });
   }
 
-  deleteTime() {}
+  deleteTime(timeId) {
+    const projectId = this.state.project.id;
+    const url = `http://localhost:3000/projects/${projectId}/times/${timeId}`;
+    deleteTimeById(url).then((newTimes) => {
+      this.setState(prevState => ({project: {...prevState.project, times: newTimes}}));
+    }).then(this.fetchProject());
+  }
 
   handleInputChange(event) {
     const target = event.target;
@@ -83,7 +92,7 @@ class ProjectDetails extends Component {
           </thead>
           <tbody>
             <tr>
-              <td></td>
+              <td>{this.state.project.id}</td>
               <td>{this.state.project.name}</td>
               <td>{this.state.project.description}</td>
               <td>{this.state.totalHours}</td>
@@ -98,13 +107,13 @@ class ProjectDetails extends Component {
         </button>
         {this.state.displayAddTime && (
           <div>
-            Description{" "}
+            Description
             <input
               name="timeDescription"
               value={this.state.timeDescription}
               onChange={this.handleInputChange}
             ></input>
-            Hours{" "}
+            Hours
             <input
               type="numbers"
               name="timeHours"
@@ -121,7 +130,8 @@ class ProjectDetails extends Component {
           <thead>
             <tr>
               <th>Description</th>
-              <th>Hours</th>{" "}
+              <th>Hours</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -130,6 +140,7 @@ class ProjectDetails extends Component {
                 <tr key={index}>
                   <td>{time.description}</td>
                   <td>{time.hours}</td>
+                  <td><button onClick={() => this.deleteTime(time.id)}>Delete</button></td>
                 </tr>
               );
             })}
