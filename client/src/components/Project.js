@@ -10,7 +10,6 @@ class Project extends Component {
     };
     this.addNewProject = this.addNewProject.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    this.getProjects = this.getProjects.bind(this);
   }
   addNewProject() {
     this.props.history.push({ pathname: "/manage-projects" });
@@ -36,8 +35,6 @@ class Project extends Component {
       this.setState({ projects: [...this.state.projects, ...res] });
     });
   }
-
-  getProjects() {}
 
   toggleModal = () => {
     this.setState({
