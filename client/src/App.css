@@ -2,7 +2,9 @@ html {
   box-sizing: border-box;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: inherit;
   padding: 0;
   margin: 0;
@@ -14,9 +16,7 @@ html {
   padding: 20px;
 }
 
-
-input
-{
+input {
   background-color: #dddddd;
   border: 1px solid #dddddd;
   padding: 15px;
@@ -65,14 +65,11 @@ button {
   -moz-osx-font-smoothing: inherit;
   -webkit-appearance: none;
 }
-.btnSubmit
-{
+.btnSubmit {
   text-transform: capitalize;
-  background-color:black;
-  color:white;
-  margin-left:30%;
-  
-  
+  background-color: black;
+  color: white;
+  margin-left: 30%;
 }
 table {
   font-family: arial, sans-serif;
@@ -80,7 +77,10 @@ table {
   width: 100%;
 }
 
-td, th, tbody, thead {
+td,
+th,
+tbody,
+thead {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 15px;
@@ -91,15 +91,12 @@ tr:nth-child(even) {
 }
 .formClass {
   width: 20%;
-  border:solid #dddddd;
+  border: solid #dddddd;
 }
 .formClass p {
- 
-  font-weight: bold;   
- 
+  font-weight: bold;
 }
-.addButton
-{
+.addButton {
   background-color: #dddddd;
-  border:solid gray;
+  border: solid gray;
 }
