@@ -11,6 +11,7 @@ class Project extends Component {
     this.addNewProject = this.addNewProject.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
+
   addNewProject() {
     this.props.history.push({ pathname: "/manage-projects" });
   }
@@ -26,7 +27,7 @@ class Project extends Component {
   deleteProject1(item) {
     const url = "http://localhost:3000/projects/" + item.id;
     deleteProject(url).then((res) => {
-      this.setState({ projects: [...this.state.projects, ...res] });
+      this.setState({projects: res});
     });
   }
 

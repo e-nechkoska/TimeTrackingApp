@@ -25,7 +25,7 @@ export const updateProject = (url, project) => {
 export const deleteProject = (url) => {
   return fetch(url, {
     method: "DELETE"
-  }).then((response) => response.json());
+  }).then(res => res.json());
 };
 
 export const addTime = (url, time) => {
