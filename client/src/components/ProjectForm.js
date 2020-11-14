@@ -27,16 +27,14 @@ export default class FormComponent extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     if (!this.state.id) {
-      console.log("Create new project...", this.state);
       addProject("http://localhost:3000/projects", this.state).then(
-        (newProject) => {
-          this.props.history.push({ pathname: "/" });
+        () => {
+          this.props.history.push({ pathname: `/` });
         }
       );
     } else {
-      console.log("Update existing project", this.state);
       updateProject("http://localhost:3000/projects", this.state).then(
-        (updatedProject) => {
+        () => {
           this.props.history.push({ pathname: "/" });
         }
       );
