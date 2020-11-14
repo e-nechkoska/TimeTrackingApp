@@ -29,7 +29,7 @@ export default class FormComponent extends React.Component {
     if (!this.state.id) {
       addProject("http://localhost:3000/projects", this.state).then(
         () => {
-          this.props.history.push({ pathname: `/` });
+          this.props.history.push({ pathname: "/" });
         }
       );
     } else {
