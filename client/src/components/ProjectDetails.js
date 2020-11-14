@@ -55,6 +55,8 @@ class ProjectDetails extends Component {
           hours += parseInt(x.hours);
         });
         this.setState({ totalHours: hours });
+        this.setState({ timeDescription: ""});
+        this.setState({ timeHours: 0});
       }
     });
   }
